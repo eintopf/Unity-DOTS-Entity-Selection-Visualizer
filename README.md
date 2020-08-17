@@ -12,3 +12,6 @@ Then open "DOTS -> Selection Visualizer" in menu bar. This will open a window wh
 Select an entity and you will see the transform handle popup for the entity.
 
 Feel free to use it and modify it.
+
+# TODO
+Find a nicer way to resolve the Unity selection proxy since Resources.FindObjectsOfType isn't the most elegant solution ;) This was the most straight forward solution, since I don't know exactly when the entity selection proxy (ScriptableObject) is created / destroyed.

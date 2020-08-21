@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using Unity.Entities;
 using Unity.Entities.Editor;
 using Unity.Transforms;
@@ -55,3 +56,4 @@ public class DOTSSelectionVisualizer : EditorWindow
         GUILayout.Label("Select entity in entity debugger (needs to have rotation and translation component)");
     }
 }
+#endif

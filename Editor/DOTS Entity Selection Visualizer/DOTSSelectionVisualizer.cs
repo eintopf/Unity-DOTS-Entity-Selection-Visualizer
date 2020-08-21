@@ -30,10 +30,11 @@ public class DOTSSelectionVisualizer : EditorWindow
         var selection = Resources.FindObjectsOfTypeAll<EntitySelectionProxy>();
         if (selection.Length != 0)
         {
-            var entity = selection[0].Entity;
+            var sel = selection[selection.Length - 1];
+            var entity = sel.Entity;
             if (entity == Entity.Null) return;
 
-            var em = selection[0].EntityManager;
+            var em = sel.EntityManager;
             
             if (em.HasComponent<Translation>(entity))
             {

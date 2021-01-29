@@ -6,10 +6,16 @@ Use this tool to draw position and rotation of your Unity DOTS entities in edito
 
 Currently shows position handle and label for selected entities which have Translation and Rotation component on them.
 
+# How to install?
+Go to "Package Manager" and add via git.
+
+![How to add git repository based package](https://docs.unity3d.com/uploads/Main/PackageManagerUI-GitURLPackageButton.png)
+
+Enter `git://github.com/eintopf/Unity-DOTS-Entity-Selection-Visualizer`
+
 # How to use?
-Download the files from this repository and place them inside your Unity projects Asset folder.
-Then open "DOTS -> Selection Visualizer" in menu bar. This will open a window which activates the entity selection visualization functionality.
-Select an entity and you will see the transform handle popup for the entity.
+Open "DOTS -> Selection Visualizer" in the menu bar. This will open a window which activates the entity selection visualization functionality. Attach it as a tab somewhere.
+Select an entity in the entity debugger list. You will see the transform handle popup for the entity in scene view.
 
 Feel free to use it and modify it.
 

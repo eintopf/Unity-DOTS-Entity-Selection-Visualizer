@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System.Linq;
 using Unity.Entities;
 using Unity.Entities.Editor;
 using Unity.Transforms;
@@ -15,12 +16,12 @@ public class DOTSSelectionVisualizer : EditorWindow
         win.Show();
     }
     
-    void OnEnable()
+    private void OnEnable()
     {
         SceneView.duringSceneGui += OnSceneGUI;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         SceneView.duringSceneGui -= OnSceneGUI;
     }
@@ -28,33 +29,31 @@ public class DOTSSelectionVisualizer : EditorWindow
     private void OnSceneGUI(SceneView obj)
     {
         var selection = Resources.FindObjectsOfTypeAll<EntitySelectionProxy>();
-        if (selection.Length != 0)
-        {
-            var sel = selection.FirstOrDefault(s => s.Entity != Entity.Null);
-            if (sel == null) return;
+        if (selection.Length == 0) return;
+        
+        var sel = selection.FirstOrDefault(s => s.Entity != Entity.Null);
+        if (sel == null || sel.World == null || !sel.World.IsCreated) return;
             
-            var entity = sel.Entity;
-            if (entity == Entity.Null) return;
+        var entity = sel.Entity;
+        if (entity == Entity.Null) return;
+            
+        var em = sel.World.EntityManager;
 
-            var em = sel.EntityManager;
-            
-            if (em.HasComponent<Translation>(entity))
-            {
-                var rot = Quaternion.identity;
-                if(em.HasComponent<Rotation>(entity))
-                {
-                    rot = em.GetComponentData<Rotation>(entity).Value;
-                }
-                
-                var translation = em.GetComponentData<Translation>(entity);
-                Handles.PositionHandle(translation.Value, rot);
-                Handles.Label(translation.Value, "Selected Entity");
-                HandleUtility.Repaint();
-            }
+        if (!em.HasComponent<Translation>(entity)) return;
+        
+        var rot = Quaternion.identity;
+        if(em.HasComponent<Rotation>(entity))
+        {
+            rot = em.GetComponentData<Rotation>(entity).Value;
         }
+                
+        var translation = em.GetComponentData<Translation>(entity);
+        Handles.PositionHandle(translation.Value, rot);
+        Handles.Label(translation.Value, "Selected Entity");
+        HandleUtility.Repaint();
     }
 
-    void OnGUI()
+    private void OnGUI()
     {
         GUILayout.Label("Select entity in entity debugger (needs to have rotation and translation component)");
     }

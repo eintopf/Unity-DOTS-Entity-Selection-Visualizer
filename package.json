@@ -1,0 +1,22 @@
+{
+    "author": {
+        "email": "bennet.jeutter@gmail.com",
+        "name": "Bennet Jeutter",
+        "url": "https://github.com/eintopf/Unity-DOTS-Entity-Selection-Visualizer"
+    },
+    "dependencies": {
+        "com.unity.entities": "0.17.0-preview.41"
+    },
+    "description": "Use this tool to draw position and rotation of your Unity DOTS entities in editor.",
+    "displayName": "Unity DOTS Entity selection visualizer",
+    "documentation": "https://github.com/eintopf/Unity-DOTS-Entity-Selection-Visualizer",
+    "keywords": [
+        "selection",
+        "dots",
+        "entities",
+        "editor"
+    ],
+    "name": "com.eintopf.dotsselectionvisualizer",
+    "version" : "0.1.0",
+    "unity": "2020.2"
+}
